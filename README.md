@@ -2,12 +2,12 @@
 
 A fully featured Discord-like chatroom web app. Main features:
 
--Chatrooms
--Topics
--Search
--Registration and login
--User profiles
--Direct messages
+- Chatrooms
+- Topics
+- Search
+- Registration and login
+- User profiles
+- Direct messages
 
 
 ## Requirements
