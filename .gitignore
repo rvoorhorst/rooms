@@ -1,2 +1,8 @@
 *sqlite3
 media
+*.env
+*.pyc
+__pycache__/
+.DS_Store
+.vscode/
+venv/

@@ -1,0 +1,55 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<main>
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__boxHeader">
+                <div class="layout__boxTitle">
+                    <a href="{% url 'message-list' %}">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                            viewBox="0 0 32 32">
+                            <title>arrow-left</title>
+                            <path
+                                d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+                            </path>
+                        </svg>
+                    </a>
+                    <h3>Message from {{ message.sender }}</h3>
+                </div>
+            </div>
+            <div class="roomListRoom">
+                <div class="roomListRoom__header">
+                    <a href="{% url 'user-profile' message.sender.profile.id %}" class="roomListRoom__author">
+                        <div class="avatar avatar--small">
+                            {% if message.sender.profile.avatar %}
+                            <img src="{{ message.sender.profile.avatar.url }}" />
+                            {% else %}
+                            <img src="{% static 'images/default_avatar.png' %}"/>
+                            {% endif %}
+                        </div>
+                        <span>{{ message.sender.username }}</span>
+                    </a>
+                    <div class="roomListRoom__actions">
+                        <span>received {{ message.created|timesince }} ago</span>
+                    </div>
+                </div>
+                <div class="roomListRoom__content">
+                    <a href="{% url 'home' %}">{{ message.subject }}</a>
+                    <p>{{ message.body }}</p>
+                </div>
+                <form class="form" action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form__action">
+                        <a class="btn btn--dark" href="{% url 'message-list' %}">Back to Inbox</a>
+                        <a class="btn btn--main" href="{% url 'delete-message' message.id %}">Delete Message</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
